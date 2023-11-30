@@ -1,0 +1,27 @@
+            div.main__content__user.bg-white.mt-4.rounded
+                div.container.d-flex.flex-column.justify-content-between
+                    div.main__user.d-flex.flex-column
+                        div.table-responsive
+                            table.table
+                                thead
+                                    tr
+                                        th scope="col" First Name
+                                        th scope="col" Last Name
+                                        th scope="col" Email
+                                        th scope="col" Last Login
+                                        th scope="col"
+
+                                tbody
+                                    - @users.each do |user|
+                                        / !-- start template -->
+                                        tr
+                                            td = user.first_name.humanize
+                                            td = user.last_name.present? ? user.last_name.humanize : ""
+                                            td = user.email
+                                            td = user.current_sign_in_at.present? ? user.current_sign_in_at.in_time_zone("Asia/Ho_Chi_Minh").strftime("%H:%M %P %d/%m/%Y") : "Never login"
+                                            td.d-flex
+                                                a href="#{edit_admin_user_path(user.id)}" class="btn btn-success"Edit
+                                                / = button_to 'Delete', admin_user_path(user.id), method: :delete,form_class: "form-delete", class: 'btn btn-danger'
+                                                button.btn.btn-danger data-bs-toggle="modal" data-bs-target="#staticBackdrop" Delete
+                                                = render partial: "shared/modal/modal_admin", locals: {user: user}
+                                        / <!-- end template -->

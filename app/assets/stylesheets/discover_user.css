@@ -1,0 +1,89 @@
+.main__content__profile {
+    width: 70%;
+    border-radius: 8px;
+    height: 85vh;
+}
+
+.main__album {
+    height: 85vh;
+}
+
+.content-wrapper {
+    height: 75vh;
+}
+
+.profile__img {
+    width: 125px;
+    height: 125px;
+}
+
+.parent-node {
+    height: 65%;
+    overflow: scroll;
+}
+
+.profile__img img {
+    border-radius: 50%;
+}
+
+.user__image {
+    cursor: pointer;
+}
+
+.user__images img {
+    border-radius: 8px;
+}
+
+.edit__btn {
+    left: 80%;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-new {
+    width: 15%;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 820px) {
+    .profile__img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .main__content__profile {
+        width: 95%;
+        height: 85vh;
+        margin: 0 auto;
+        padding-left: 0 !important;
+    }
+
+    .photo {
+        width: 27%;
+    }
+
+    .photo__info {
+        width: 65%;
+    }
+
+    .album {
+        height: 175px;
+        width: 95%;
+    }
+
+    .btn-new {
+        width: 20%;
+        font-size: 12px;
+    }
+
+    .parent-node {
+        height: 80%;
+    }
+
+    .user__image {
+        height: 250px;
+    }
+}

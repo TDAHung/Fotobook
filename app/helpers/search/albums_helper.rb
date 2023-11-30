@@ -1,0 +1,2 @@
+module Search::AlbumsHelper
+end

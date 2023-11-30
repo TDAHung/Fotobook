@@ -1,0 +1,2 @@
+module Search::PhotosHelper
+end

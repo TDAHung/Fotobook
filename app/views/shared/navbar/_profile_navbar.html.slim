@@ -1,0 +1,23 @@
+    div class="profile__nav d-flex"
+        div class="profile__img"
+            img src="#{user.img_url.present? ? user.img_url.url : '/assets/avatar.png'}" alt=""
+        div class="profile__info d-flex flex-column justify-content-between ms-4"
+            div
+                a class="btn btn-edit-profile btn-sm w-25" href="#{edit_user_registration_path}" Edit Profile
+                - if current_user.user_type == 'admin'
+                    a class="btn btn-edit-profile btn-sm w-25" href="#{admin_photos_path}" Adminitrative
+            h1 = user.first_name.to_s.humanize + ' ' + user.last_name.to_s.humanize
+            nav class="tabs d-flex fs-5 p-0"
+                a class="tab #{request.path == photos_path ? 'active':''} ps-0 ms-0" href="#{photos_path}"
+                    span #{photo_count} Photos
+                a class="tab #{request.path == albums_path ? 'active':''}" href="#{albums_path}"
+                    span #{album_count} Albums
+                a class="tab #{request.path == followees_path ? 'active':''}" href="#{followees_path}"
+                    = render partial: "shared/navbar/followee_navbar", locals: { followers_count: followers.count }
+                a class="tab #{request.path == followers_path ? 'active':''}" href="#{followers_path}"
+                    span #{followees.count} Followers
+                / usage
+                / = render partial: "shared/profile_navbar", locals: {user: @class_variable, album_count: instance_variable,
+                /     photo_count: instance_variable,
+                /     followees: @class_variable,
+                /     followers: @class_variable}

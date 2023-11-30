@@ -1,0 +1,23 @@
+    div.main__content__profile.bg-white.mt-4.d-flex.pt-3.flex-column
+        div.main__album.d-flex.flex-column.justify-content-around
+            div.container.content-wrapper
+                = render partial: "shared/navbar/profile_navbar", locals: {user: @user, album_count: @albums.size,
+                    photo_count: @photos.size,
+                    followees: @followees_navbar,
+                    followers: @followers_navbar}
+                = link_to "ADD NEW PHOTO", new_photo_path, class: "btn btn-success btn-new float-end"
+                input id="type" value="photos" type="hidden"
+                div class="row parent-node mx-0 w-100 pt-2"
+                    - @photos.find_each do |photo|
+                        / <!-- start template -->
+                        div.child-node.col-lg-3.col-6.my-2.user__images.position-relative.photo__wrapper id="photo_#{photo.id}" data-bs-toggle="modal" data-bs-target="#photoModal"
+                            - if !photo.is_public
+                                div.position-absolute.edit__btn.bg-white.d-flex
+                                    i.fa-solid.fa-lock
+                            div.user__image
+                                img src="#{photo.img_url.url}" alt="avatar"
+                            div.user__image__title.text-center = photo.title
+                            div.d-none.user__image__description = photo.description
+                        / <!-- end template -->
+
+            = render partial: "shared/pagination", locals: {asset: @photos}

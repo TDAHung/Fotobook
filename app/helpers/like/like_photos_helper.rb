@@ -1,0 +1,2 @@
+module Like::LikePhotosHelper
+end

@@ -1,0 +1,24 @@
+    div.main__content__album.bg-white.mt-4.d-flex.pt-3.flex-column.ps-5
+        div.container.content-wrapper
+            div.main__album.d-flex.flex-column
+                div class="row parent-node w-100"
+                    - @albums.each do |album|
+                        / <!-- start template -->
+                        div.child-node.col-3.p-0.d-flex.flex-column.album.position-relative.mx-4
+                            div.postion-relative.d-flex.justify-content-center
+                                - album.album_attachments.each do |album|
+                                    div class="photo shadow position-absolute"
+                                        img src="#{album.url}" alt=""
+                                div.w-100.px-3.py-1.bg-secondary.album__description.text-white.d-flex.justify-content-between
+                                    = album.title
+                                    a href="#{edit_admin_album_path(album.id)}"
+                                        i class="fa-solid fa-pen-to-square"
+
+                                div.photo-count.position-absolute.d-flex.justify-content-center.align-items-center.text-white.text-center
+                                    | #{album.album_attachments.count.to_s}
+                                    | <br>
+                                    | Photos
+                        / <!-- end template -->
+        = render partial: "shared/pagination", locals: {asset: @albums}
+    template id="limit_paging_template"
+        input.d-none value="6"

@@ -1,0 +1,21 @@
+header.bg-primary.text-white.sticky-top.fw-semibold
+    div.container
+        div.header__content.d-flex.justify-content-between.align-items-center.p-2
+            div.header-box.d-flex.w-75
+                a.header-box__logo.me-5.fs-4.text-white href="#{root_path}" Fotobook
+                / input.form-control.w-75 type="email" id="inputSearch" placeholder="Search Photo / Album"
+                = render partial: "search/form"
+            div.header-box.d-flex
+                - if current_user.nil? == false
+                    a.header-box__info.d-flex href="#{photos_path}"
+                        div.header-box__info__img.me-4
+                            img[src="#{current_user.img_url.present? ? current_user.img_url.url : '/assets/avatar.png'}"
+                             alt="courage-dog"]
+                        div.m-auto.user__name.text-end
+                            = current_user["first_name"].to_s.humanize + ' ' + current_user["last_name"].to_s.humanize
+                    = link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete } , id: 'btn-logout',
+                    class: 'ms-5 btn text-white d-flex justify-content-center'
+                - else
+                    a.ms-5.text-white.text-decoration-none.m-auto href="/sign_in" id="link-login" Login
+        / usage
+        / = render partial: 'shared/header'

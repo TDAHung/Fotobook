@@ -1,0 +1,41 @@
+main class="d-flex w-75 justify-content-center flex-column align-items-center"
+    span class="form__title fs-1 text-primary mt-5 mb-3"Fotobook Signup
+    div class="d-flex justify-content-between media mb-3 p-3 rounded"
+        a class="media__signup" href="#"
+            img src="/assets/facebook.webp" alt=""
+        a class="media__signup" href="#"
+            img src="/assets/google.jpeg" alt=""
+        a class="media__signup" href="#"
+            img src="/assets/twitter.png" alt=""
+    form [class="w-50 form__registrations bg-body-tertiary d-flex mt-1 flex-column align-items-center py-4 border border-top-0 shadow-sm rounded" action="#{user_registration_path}"
+        method="POST" ]
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        div class="mb-3 w-75"
+            label for="email" class="form-label" Email
+            input [type="text" class="form-control" id="email" placeholder="abc@abc.com"
+                name="user[email]"]
+            - resource.errors.messages[:email].each do |error|
+                div.alert.alert-danger = error
+        div class="mb-3 w-75"
+            label for="firstName" class="form-label" First Name
+            input [type="text" class="form-control" id="firstName" placeholder="First Name"
+                name="user[first_name]"]
+            - resource.errors.messages[:first_name].each do |error|
+                div.alert.alert-danger = error
+        div class="mb-3 w-75"
+            label for="password" class="form-label" New Password
+            input [type="password" class="form-control" id="password" placeholder="Password"
+                name="user[password]"]
+            - resource.errors.messages[:password].each do |error|
+                div.alert.alert-danger = error
+        div class="mb-3 w-75"
+            label for="passwordConfirm" class="form-label"Password Confirmation
+            input [type="password" class="form-control" id="passwordConfirm" placeholder="Password"
+                name="user[password_confirmation]"]
+            - resource.errors.messages[:password_confirmation].each do |error|
+                div.alert.alert-danger = error
+        input type="hidden" name="user[user_type]" value="user"
+        input type="hidden" name="user[img_url]" value=""
+        input type="hidden" name="user[last_name]" value=""
+        input type="hidden" name="user[status]" value="active"
+        button type="submit" class="btn btn-primary w-25" Signup

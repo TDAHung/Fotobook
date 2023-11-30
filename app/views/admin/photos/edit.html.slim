@@ -1,0 +1,38 @@
+            div class="main__content__album bg-white mt-4 d-flex flex-column"
+                div class="container"
+                    div class="text-start fw-3 mt-3"
+                        h4 Edit Photo
+                    hr
+                    div class="main__album d-flex flex-column"
+                        form class="row g-3" action="#{photos_path}/#{@photo["id"]}" method="post" enctype="multipart/form-data" accept-charset="UTF-8"
+                            = hidden_field_tag :authenticity_token, form_authenticity_token
+                            input type="hidden" name="_method" value="patch" autocomplete="off"
+                            div class="col-md-6 input__photo"
+                                label for="photoTitle" class="form-label"Title
+                                input [type="text" class="form-control" id="photoTitle" value="#{@photo["title"]}"
+                                    placeholder="Photo Title" name="photo[title]" required]
+
+                            div class="col-md-6 input__photo"
+                                label for="photoDescription" class="form-label" Description
+                                textarea [class="form-control" id="photoDescription" rows="3"
+                                    placeholder="Photo Description" name="photo[description]" required] = @photo["description"]
+
+                            div class="col-md-3"
+                                label for="photoMode" class="form-label" Sharing Mode
+                                select [class="form-select" id="photoMode" name="photo[is_public]" required value="#{@photo["is_public"]}"]
+                                    option [value="1" selected] Public
+                                    option value="0" Private
+
+                            div class="col-12"
+                                label for="imageSrc" class="form-label"Photo
+                                input [type="file" class="form-control" id="file-upload"
+                                    accept="image/gif, image/jpeg, image/png, image/jpg" name="photo[img_url]"]
+                                input class="photoUrl" type="hidden" value="#{@photo.img_url.url}" name="#{@photo.img_url.identifier}"
+
+                            div class="col-12"
+                                div class="preview imgGroup"
+                                    img [src="#{@photo.img_url.url}" alt="Preview" id="image-preview"
+                                        class="image-preview"]
+                            div class="col-12 button-group"
+                                button type="submit" class="btn btn-success me-5" Save
+                                button id="btn-remove" class="btn btn-danger" Delete

@@ -1,0 +1,32 @@
+div class="main__content__album bg-white mt-4 rounded d-flex justify-content-around flex-column"
+    = render partial: "shared/pages"
+    div class="main__album d-flex flex-column"
+        div class="container d-flex flex-column justify-content-between"
+            div class="row"
+                - @photos.each do |photo|
+                    - photo_url = Photo.find(photo["id"]).img_url.url
+                    / <!-- start template -->
+                    div class="col-sm-12 col-md-6 mx-3 my-2 album bg-body-tertiary shadow border-0 button-modal child-node" id="album_#{photo["id"]}"
+                        / <!-- remember to add album_id-->
+                        div class="row justify-content-between wrapper"
+                            div class="photo__wrapper d-flex align-items-center col-md-4 p-0" id="photo_#{photo["id"]}" data-bs-toggle="modal" data-bs-target="#photoModal"
+                                / <!-- remember to add photo_id -->
+                                div class="photo"
+                                    img src="#{photo_url}" alt=""
+                            div class="col-md-8 photo__info d-flex flex-column justify-content-between py-3"
+                                div class="photo__author d-flex align-items-center justify-content-between w-100"
+                                    a href="#{discover_photos_path}/#{photo[:user_id]}" class="d-flex align-items-center"
+                                        div class="header-box__info__img" href="#"
+                                            img src="#{photo.user.img_url.present? ? photo.user.img_url.url : '/assets/avatar.png'}" alt="courage-dog"
+                                        div class="photo__author__name ms-3 text-primary" href="#" = photo.user.first_name.to_s.humanize + ' ' + photo.user.last_name.to_s.humanize
+                                h5 class="photo__title fw-bold" = photo["title"]
+                                p class="photo__description text-start" = photo["description"]
+                                div class="photo__liked d-flex justify-content-between align-items-center"
+                                    = render partial: "shared/button/like", locals: { asset: photo, likes: @likes, type_asset: "Photo" }
+
+                                    - created_at = photo["created_at"].to_s
+                                    - formatted_time = DateTime.strptime(created_at, "%Y-%m-%d %H:%M:%S %Z").strftime("%l:%M %P %d/%m/%Y")
+                                    p.photo__time.m-0 = formatted_time
+                    / <!-- end template -->
+    = render partial: "shared/pagination", locals: {asset: @photos}
+        / == render partial: 'pagy/nav', locals: {pagy: @photos}

@@ -1,0 +1,84 @@
+form {
+    height: 100%;
+}
+
+main {
+    height: 65vh;
+}
+
+form {
+    width: 50%;
+}
+
+.avatar {
+    width: 30%;
+}
+
+.avatar img {
+    border-radius: 50%;
+}
+
+.media {
+    width: 20%;
+    border: 2px solid rgb(189, 189, 189);
+}
+
+.media__signup {
+    width: 25%;
+}
+
+.media__signup img {
+    border-radius: 50%;
+}
+
+.form__title {
+    margin-top: 80px;
+}
+
+@media screen and (max-width:820px) {
+    body {
+        font-size: 170%;
+    }
+
+    main {
+        height: 70vh;
+    }
+
+    .media {
+        width: 40%;
+    }
+
+    .form__title {
+        font-size: 50px !important;
+    }
+
+    form {
+        height: 70%;
+        width: 100% !important;
+    }
+
+    button[type="submit"] {
+        width: 40% !important;
+        height: 40px;
+        font-size: 20px;
+        margin-top: 20px !important;
+    }
+}
+
+@media screen and (max-width:412px) {
+    body {
+        font-size: 100%;
+    }
+
+    .media {
+        width: 60%;
+    }
+
+    .form__title {
+        font-size: 40px !important;
+    }
+
+    .avatar {
+        width: 60%;
+    }
+}

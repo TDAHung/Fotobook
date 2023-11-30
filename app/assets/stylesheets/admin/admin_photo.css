@@ -1,0 +1,70 @@
+.main__user__eidt {
+    width: 65%;
+    border-radius: 8px;
+}
+
+.album__description {
+    font-size: 13px;
+    opacity: 80%;
+}
+
+.album__description a {
+    font-size: 16px;
+}
+
+.album__description,
+.album__lock {
+    z-index: 100;
+}
+
+.album {
+    height: 200px;
+}
+
+.main__album {
+    height: 65vh;
+}
+
+.photo {
+    height: 100%;
+}
+
+.main__content__album {
+    width: 75%;
+    height: 85vh;
+    padding: 20px 0;
+}
+
+.container {
+    height: 100%;
+}
+
+@media screen and (max-width:820px) {
+    .album {
+        width: 30%;
+    }
+
+    .main__content__album {
+        width: 75%;
+        height: 80vh;
+    }
+
+    .main__album {
+        height: 90%;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .main__content__album {
+        width: 95%;
+    }
+
+    .album {
+        width: 45%;
+    }
+
+    .main__album {
+        height: 70%;
+    }
+}

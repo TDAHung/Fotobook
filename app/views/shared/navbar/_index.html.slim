@@ -1,0 +1,12 @@
+    nav.navbar.navbar-expand-lg.bg-body-tertiary.align-items-start.mt-4
+        div.container-fluid.justify-content-center.mt-4.pb-4
+            div.navbar-nav.navbar-responsive.flex-column
+                div.line.mb-1.bg-black
+                div.line.mb-1.bg-black
+                div.line.mb-1.bg-black
+
+            div class="navbar-nav navbar-normal flex-column"
+                = link_to "Feeds", root_path, class: "nav-link #{request.path == root_path || request.path == feeds_photos_path ? 'active' : ''}"
+                = link_to "Discover", discover_path, class: "nav-link #{request.path == discover_path || request.path == discover_photos_path ? 'active' : ''}"
+        / usage
+        / = render partial: 'shared/navbar/index'

@@ -1,0 +1,32 @@
+    main class="d-flex flex-column justify-content-center align-items-center w-75 m-auto mt-5"
+        div class="form__title fs-1 text-primary" Fotobook Login
+        div class="d-flex justify-content-between media mb-3 rounded p-3"
+            a class="media__signup" href="#"
+                img src="/assets/facebook.webp" alt=""
+            a class="media__signup" href="#"
+                img src="/assets/google.jpeg" alt=""
+
+            a class="media__signup" href="#"
+                img src="/assets/twitter.png" alt=""
+        form [
+            class="py-5 bg-body-tertiary d-flex flex-column align-items-center justify-content-center shadow-sm rounded border border-top-0"
+            action="#{user_session_path}" method="POST"]
+            = hidden_field_tag :authenticity_token, form_authenticity_token
+            div class="avatar d-flex justify-content-center"
+                img src="/assets/avatar.png" alt="avatar"
+            = render partial: "shared/flash/error"
+            = render partial: "shared/flash/notice"
+            div class="w-75 mt-2"
+                label for="email" Email
+                input [type="text" class="form-control" id="email" placeholder="abc@abc.com" required name="user[email]"]
+            div class="w-75"
+                label for="email" Password
+                input [type="password" class="form-control" id="password" placeholder="Password" required name="user[password]"]
+
+            div class="w-75 d-flex flex-column justify-content-center align-items-center mt-3"
+                button type="submit" class="btn btn-primary w-25"Login
+                a class="text-primary" href="#"Forgot password?
+        div class=""
+            a class="text-primary" href="#{new_user_registration_path}" Create an account
+
+

@@ -1,0 +1,21 @@
+    div.main__content__album.bg-white.mt-4.rounded
+        div.container.d-flex.flex-column.justify-content-between
+            div.main__album.d-flex.flex-column
+                div.row
+                    - @photos.each do |photo|
+                            / <!-- start template -->
+                            div.col-2.mb-3.p-0.mx-2.d-flex.flex-column.justify-content-between.shadow.album.position-relative.child-node
+                                div.w-100.px-3.py-1.bg-secondary.album__description.text-white.d-flex.justify-content-between
+                                    = photo.title
+                                    a href="#{edit_admin_photo_path(photo.id)}"
+                                       i.fa-solid.fa-lock
+
+                                div.photo.position-absolute.top-0.w-100
+                                    img src="#{photo.img_url}" alt=""
+
+                                div.album__lock.px-3.text-end
+                                    i.fa-solid.fa-lock
+                            / <!-- end template -->
+            = render partial: "shared/pagination", locals: {asset: @photos}
+    template id="limit_paging_template"
+        input.d-none value="10"

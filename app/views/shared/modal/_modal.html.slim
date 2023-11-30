@@ -1,0 +1,27 @@
+div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    div class="modal-dialog"
+        div class="modal-content"
+            div class="modal-header"
+                h1 class="modal-title fs-5" id=""Modal title
+                button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            div class="modal-body"
+                div id="carouselExampleRide" class="carousel slide" data-bs-ride="true"
+                    div class="carousel-inner d-flex"
+                    button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev"
+                        span class="carousel-control-prev-icon" aria-hidden="true"
+                        span class="visually-hidden"Previous
+                    button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next"
+                        span class="carousel-control-next-icon" aria-hidden="true"
+                        span class="visually-hidden"Next
+                div class="modal-description"
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam aspernatur necessitatibus
+                    | commodi distinctio in consectetur explicabo repudiandae quae qui. Vero excepturi ea eum nulla
+                    | totam quae sit atque porro magnam.
+            div class="modal-footer"
+                button type="button" class="btn btn-secondary" data-bs-dismiss="modal"Close
+
+template id="template__carousel__img"
+    div class="carousel-item"
+        img src="./assets/images/courage.webp" class="d-block w-100" alt="..."
+    / usage
+    / = render partial: "shared/modal/modal"

@@ -1,0 +1,3 @@
+= search_form_for(@query, url: search_path, method: :get,remote: true, class: "d-flex") do |f|
+    = f.search_field :title_or_description_or_user_first_name_cont, placeholder: "Search...", class: "form-control w-75"
+    = f.submit "Search", class:"btn btn-success"

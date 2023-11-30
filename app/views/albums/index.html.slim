@@ -1,0 +1,28 @@
+    div.main__content__profile.bg-white.mt-4.d-flex.pt-3.flex-column
+        div.main__album.d-flex.flex-column.justify-content-around
+            div.container.content-wrapper
+                = render partial: "shared/navbar/profile_navbar", locals: {user: @user, album_count: @albums.size,
+                    photo_count: @photos.size,
+                    followees: @followees_navbar,
+                    followers: @followers_navbar}
+                = link_to "ADD NEW ALBUMS", new_album_path, class: "btn btn-success btn-new float-end"
+                input id="type" value="albums" type="hidden"
+                div class="row parent-node w-100"
+                    - @albums.find_each do |album|
+                        / <!-- start template -->
+                        div.child-node.col-lg-3.col-6.d-flex.flex-column.justify-content-end.album.position-relative.photo__wrapper id="photo_#{album["id"]}" data-bs-toggle="modal" data-bs-target="#photoModal"
+                            - if album.is_public == false
+                                div.position-absolute.edit__btn.bg-white.d-flex
+                                    i.fa-solid.fa-lock
+                            div.postion-relative.d-flex.justify-content-center
+                                - album.album_attachments.each do |album|
+                                    div class="photo shadow position-absolute user__image"
+                                        img src="#{album.url}" alt=""
+                                div.photo-count.position-absolute.d-flex.justify-content-center.align-items-center.text-white.text-center
+                                    | #{album.album_attachments.count.to_s}
+                                    | <br>
+                                    | Photos
+                            div.w-100.user__image__title.text-center = album["title"]
+                            div.d-none.user__image__description = album.description
+                        / <!-- end template -->
+            = render partial: "shared/pagination", locals: {asset: @albums}

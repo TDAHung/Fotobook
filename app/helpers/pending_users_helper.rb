@@ -1,0 +1,2 @@
+module PendingUsersHelper
+end

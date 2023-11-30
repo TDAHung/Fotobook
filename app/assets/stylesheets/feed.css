@@ -1,0 +1,110 @@
+.main__content__album {
+    width: 75%;
+    height: 85vh;
+    padding: 20px 0;
+    border-radius: 8px;
+}
+
+.album {
+    height: 200px;
+    width: 46.5%;
+}
+
+.main__album {
+    height: 65vh;
+}
+
+.wrapper {
+    height: 90%;
+}
+
+.photo {
+    margin-left: 10px;
+    width: 175px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.photo:nth-child(1) {
+    z-index: 10;
+}
+
+.photo:nth-child(2) {
+    transform: rotate(4deg);
+    z-index: 5;
+}
+
+.photo:nth-child(3) {
+    transform: rotate(10deg);
+    z-index: 2;
+}
+
+.photo__description {
+    height: 45%;
+    font-size: 11px;
+    line-height: 18px;
+    overflow-wrap: break-word;
+}
+
+.photo__title {
+    margin-bottom: 0;
+}
+
+.photo__liked {
+    font-size: 12px;
+}
+
+.photo__liked .active {
+    color: blue;
+}
+
+.photo__time {
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.modal-description {
+    font-size: 13px;
+    overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 820px) {
+    .album {
+        height: 175px;
+        width: 95%;
+    }
+
+    .main__content__album {
+        width: 75%;
+        height: 85vh;
+    }
+
+    .photo {
+        width: 15%;
+    }
+
+    .photo__wrapper {
+        width: 25%;
+    }
+
+    .photo__info {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 412px) {
+
+    .main__content__album {
+        width: 95%;
+        height: 85vh;
+        margin: 0 auto;
+    }
+
+    .photo {
+        width: 27%;
+    }
+
+    .photo__info {
+        width: 65%;
+    }
+}

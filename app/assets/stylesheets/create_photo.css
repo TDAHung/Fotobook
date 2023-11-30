@@ -1,0 +1,17 @@
+.preview {
+    width: 15%;
+}
+
+.image-preview {
+    max-width: 300px;
+}
+
+@media screen and (max-width:820px) {
+    .input__photo {
+        width: 100%;
+    }
+
+    .preview {
+        width: 40%;
+    }
+}

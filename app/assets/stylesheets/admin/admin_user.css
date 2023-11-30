@@ -1,0 +1,17 @@
+.main__content__user {
+    width: 70%;
+}
+
+.user__table {
+    height: 100%;
+}
+
+td {
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 820px) {
+    .main__content__user {
+        width: 90%;
+    }
+}

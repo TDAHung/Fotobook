@@ -1,0 +1,21 @@
+= turbo_frame_tag "like-#{asset["id"]}-#{type_asset}"
+    - like_found = likes.where(likeable_id: asset["id"])
+    - if !current_user.nil?
+        - is_found = likes.exists?(user_id: current_user.id, likeable_id: asset["id"])
+        form action="#{!is_found ? likes_path : like_path(current_user.id)}" method="post" data-remote="true"
+            = hidden_field_tag :authenticity_token, form_authenticity_token
+            - if is_found
+                input type="hidden" name="_method" value="delete" autocomplete="off"
+            input type="hidden" name="like[user_id]" value="#{current_user.id}"
+            input type="hidden" name="like[likeable_type]" value="#{type_asset}"
+            input type="hidden" name="like[likeable_id]" value="#{asset["id"]}"
+            button type="submit" class="photo_heart"
+                i class="fa-#{!is_found ? "regular" : "solid"} fa-heart text-primary"
+                span.text-primary = like_found.count
+    - else
+        div.photo_heart
+            i class="fa-regular fa-heart text-primary"
+            span.text-primary = like_found.count
+    / usage
+    / = render partial: "shared/button/like", locals: { asset: instance_variable,
+    / likes: @class_variable, type_asset: "Album" or "Photo" }

@@ -1,0 +1,19 @@
+    - if current_user.id != asset.user.id
+        = turbo_frame_tag "follow-#{asset.id}", class: "follow-#{asset.user.id}"
+            - if followers.find_by(following_user_id: asset.user.id) == nil
+                form action="#{followers_path}" method="post"
+                    = hidden_field_tag :authenticity_token, form_authenticity_token
+                    input type="hidden" value="#{asset.user.id}" name="follower[following_user_id]"
+                    input type="hidden" value="#{current_user.id}" name="follower[follower_id]"
+                    input type="hidden" value="#{type_asset}" name="type_asset"
+                    button type="submit" class="btn btn-follow" Follow
+            - else
+                = button_to 'Following', followee_path(asset.user.id),
+                method: :delete, class: 'btn btn-follow active',
+                params: { type_asset: "#{type_asset}"},
+                class_form: "follow-#{asset.user.id}"
+    - else
+        a class="btn btn-follow" href="#{photos_path}"My Profile
+        / usage
+        / = render partial: "shared/button/follow/discover",
+        /locals: {followers: @class_variable, user_id: instance_variable}

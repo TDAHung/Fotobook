@@ -1,0 +1,2 @@
+module DiscoverUserAlbumsHelper
+end

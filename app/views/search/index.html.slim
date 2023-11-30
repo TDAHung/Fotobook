@@ -1,0 +1,34 @@
+div class="main__content__album bg-white mt-4 d-flex justify-around flex-column"
+    div class="main__album d-flex flex-column"
+        div class="container pt-5"
+            div class="row parent-node"
+                / <!-- start template -->
+                - @result.each do |record|
+                    div class="col-sm-12 col-md-6 mx-3 my-2 p-0 album bg-body-tertiary shadow border-0 button-modal child-node d-flex align-items-center" id="album_#{record["id"]}"
+                        / <!-- remember to add album_id -->
+                        div.row.w-100.wrapper.justify-content-between
+                            div class="photo__wrapper d-flex align-items-center col-md-4 postion-relative" id="photo_#{record["id"]}" data-bs-toggle="modal" data-bs-target="#photoModal"
+                                / <!-- remember to add photo_id -->
+                                - if !record["album_attachments"].nil?
+                                    - record.album_attachments.each do |image|
+                                        div.photo.position-absolute
+                                            img src="#{image.url}" alt=""
+                                - else
+                                    div.photo.position-absolute
+                                        img src="#{record.img_url.url}" alt=""
+                            div class="col-md-7 photo__info d-flex flex-column justify-content-between"
+                                div class="photo__author d-flex align-items-center justify-content-between"
+                                    a href="#{discover_photos_path}/#{record.user.id}" class="d-flex align-items-center"
+                                        div class="header-box__info__img" href="#"
+                                            img src="#{record.user.img_url.present? ? record.user.img_url.url : '/assets/avatar.png'}" alt="courage-dog"
+                                        div class="photo__author__name ms-3 text-primary" = record.user.first_name.to_s.humanize + ' ' + record.user.last_name.to_s.humanize
+                                    = render partial: "shared/button/follow/discover", locals: { asset: record, followers: @followers, type_asset: record.class }
+                                h5.photo__title.fw-bold = record["title"]
+                                p.photo__description.text-start = record["description"]
+                                div.photo__liked.d-flex.justify-content-between.align-items-center
+                                    - likes = record.class == 'Album' ? @likes_album : @likes_photo
+                                    = render partial: "shared/button/like", locals: { asset: record, likes: likes, type_asset: record.class }
+                                    p.photo__time.m-0 = record["created_at"].in_time_zone("Asia/Ho_Chi_Minh").strftime("%H:%M %P %d/%m/%Y")
+                / <!-- end template -->
+                = render partial: "shared/pagination", locals: { asset: @result}
+                / <!-- end template -->

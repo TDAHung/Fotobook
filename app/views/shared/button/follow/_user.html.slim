@@ -1,0 +1,16 @@
+- if current_user.id != user_id
+    = turbo_frame_tag "follow-#{user_id}"
+        - if Follower.find_by(follower_id: current_user.id, following_user_id: user_id) == nil
+            form action="#{followers_path}" method="post" class="mx-auto"
+                = hidden_field_tag :authenticity_token, form_authenticity_token
+                input type="hidden" value="#{user_id}" name="follower[following_user_id]"
+                input type="hidden" value="#{current_user.id}" name="follower[follower_id]"
+                button type="submit" class="follower__btn btn-follow bg-white" Follow
+        - else
+            = button_to 'Following', followee_path(user_id), method: :delete,
+            class: 'follower__btn btn-follow bg-white btn btn-follow active'
+- else
+    a class="btn btn-follow w-75 mx-auto" href="#{discover_photos_path}/#{user_id}"My Profile
+    / usage
+    / = render partial: "shared/button/follow/user", locals: {followees: @class_variable, user_id: instance_variable}
+

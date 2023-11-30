@@ -1,0 +1,30 @@
+    div.main__content__profile.bg-white.mt-4.d-flex.pt-3.flex-column
+        div.main__album.d-flex.flex-column
+            div.container.content-wrapper
+                = render partial: "shared/navbar/profile_navbar", locals: {user: @user, album_count: @user.albums.count,
+                    photo_count: @user.photos.count,
+                    followees: @followees_navbar,
+                    followers: @followers_navbar}
+                div.row.parent-node.w-100.ms-1
+                    - @followers.each do |followee_info|
+                        / <!-- start template -->
+                        - user = followee_info.following_user
+                        div.child-node.col-lg-3.col-6.follower
+                            div.follower__wrapper.d-flex.justify-content-between.flex-column.m-1.bg-body-tertiary.shadow.p-3
+                                div.follower__img.mx-auto
+                                    a href="#{discover_photos_path}/#{user.id}"
+                                        img src="#{user.img_url.present? ? user.img_url.url : "/assets/avatar.png"}" alt=""
+                                div.follower__name.text-center = user.first_name.to_s.humanize + user.last_name.to_s.humanize
+                                div.follower__counter.d-flex.justify-content-between.text-primary
+                                    div.follower__counter__photos.text-center
+                                        div.follower__count.color-primary = user.photos.count
+                                        div.follower__type PHOTOS
+
+                                    div.follower__counter__albums.text-center
+                                        div.follower__count = user.albums.count
+                                        div.follower__type ALBUMS
+                                div.w-100.d-flex.justify-content-center
+                                    = render partial: "shared/button/follow/user", locals: {followees: @followers, user_id: user.id}
+                        / <!-- end template -->
+            = render partial: "shared/pagination", locals: {asset: @followers}
+

@@ -1,0 +1,60 @@
+.tab {
+    padding: 0 20px;
+    border-right: 2px solid rgb(189, 189, 189);
+    margin-left: 5px;
+    color: rgb(189, 189, 189);
+    font-weight: lighter;
+}
+
+.tabs>.tab:last-child {
+    border: none;
+}
+
+.tab>span {
+    cursor: pointer;
+}
+
+.tab.active {
+    color: blue;
+    font-weight: 500;
+}
+
+.btn-follow {
+    border: solid rgb(255, 146, 20);
+    border-radius: 10px;
+    color: rgb(255, 146, 20);
+    padding: 0 5px;
+    transition: 0.5s;
+}
+
+.btn-follow:hover {
+    border: solid rgb(255, 146, 20);
+    color: white;
+    background-image: linear-gradient(to top right, yellow, red);
+}
+
+.btn-follow.active {
+    border: solid rgb(255, 146, 20);
+    color: white;
+    background-image: linear-gradient(to top right, yellow, red);
+}
+
+.btn-edit-profile {
+    border: solid rgb(3, 195, 255);
+    border-radius: 10px;
+    color: rgb(3, 195, 255);
+    padding: 0 5px;
+    transition: 0.5s;
+}
+
+.btn-edit-profile:hover {
+    border: solid rgb(3, 195, 255);
+    color: white;
+    background-image: linear-gradient(to top right, rgb(3, 195, 255), red);
+}
+
+.btn-edit-profile.active {
+    border: solid rgb(3, 195, 255);
+    color: white;
+    background-image: linear-gradient(to top right, rgb(3, 195, 255), red);
+}

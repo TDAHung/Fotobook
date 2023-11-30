@@ -1,0 +1,95 @@
+doctype html
+html
+  head
+    title Fotobook
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    / <!-- bootstrap -->
+    link [href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"]
+    script [src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"]
+    = javascript_importmap_tags
+
+    / <!-- css -->
+    = stylesheet_link_tag 'main.css'
+    = stylesheet_link_tag 'tab_user.css'
+    / <!-- font awesome -->
+    script src="https://kit.fontawesome.com/d9876ed7d9.js" crossorigin="anonymous"
+
+    - case controller_name
+      - when "discover_photos"
+        = stylesheet_link_tag 'photo.css'
+      - when "followees", "followers"
+        = stylesheet_link_tag 'followee.css'
+      - when "registrations"
+        = stylesheet_link_tag 'edit_user.css'
+      - when "albums"
+        - case controller.action_name
+          - when "index_discover", "index_feed"
+            = stylesheet_link_tag 'discover.css'
+          - when 'new', 'edit'
+            = stylesheet_link_tag 'album.css'
+            = stylesheet_link_tag 'create_album.css'
+          - else
+            = stylesheet_link_tag 'album.css'
+      - when "photos"
+        - case controller.action_name
+          - when "index_discover", "index_feed"
+            = stylesheet_link_tag 'photo.css'
+          - when 'new', 'edit'
+            = stylesheet_link_tag 'create_photo.css'
+          - else
+            = stylesheet_link_tag 'discover_user.css'
+            = stylesheet_link_tag 'photo.css'
+      - when "search"
+        = stylesheet_link_tag 'discover.css'
+
+  body
+    = render partial: 'shared/header'
+    main
+      div class="main__content d-flex bg-body-tertiary position-relative"
+        = render partial: 'shared/navbar/index'
+        = yield
+    - case controller_name
+      - when "registrations"
+        = javascript_include_tag 'edit_photo.js'
+        = javascript_include_tag 'index.js'
+
+      - when "photos"
+        - case controller.action_name
+          - when 'index'
+            = render partial: "shared/modal/modal_profile"
+            = javascript_include_tag 'modal_user.js'
+          - when 'new'
+            = javascript_include_tag 'input_photo.js'
+          - when 'edit'
+            = javascript_include_tag 'edit_photo.js'
+          - when 'index_discover', 'index_feed'
+            = render partial: "shared/modal/modal"
+            = javascript_include_tag 'index.js'
+          - when 'discover_user_photos_index'
+            = javascript_include_tag 'modal_user.js'
+            = render partial: "shared/modal/modal"
+
+
+      - when "albums"
+        - case controller.action_name
+          - when 'index'
+            = render partial: "shared/modal/modal_profile"
+            = javascript_include_tag 'modal_user.js'
+          - when 'new'
+            = javascript_include_tag 'input_multiple.js'
+          - when 'edit'
+            = javascript_include_tag 'edit_album.js'
+          - when 'index_discover', 'index_feed'
+            = render partial: "shared/modal/modal"
+            = javascript_include_tag 'index.js'
+          - when 'discover_user_index'
+            = javascript_include_tag 'modal_user.js'
+            = render partial: "shared/modal/modal"
+
+

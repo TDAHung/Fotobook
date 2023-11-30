@@ -1,0 +1,21 @@
+
+div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+  div class="modal-dialog"
+    div class="modal-content"
+        div class="modal-header"
+            h1 class="modal-title fs-5" id="staticBackdropLabel"    Confirm to delete user: #{user.first_name.humanize}
+            button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        div class="modal-body"
+            - followee_count = user.followees.size != 0 ? "#{user.followees.size} followee" : ""
+            - follower_count = user.followers.size != 0 ? "There are #{user.followers.size} follow this user" : ""
+            | Are you sure want to delete this user and all related assets
+            | This user has #{user.albums.size} albums, #{user.photos.size} photos
+            = followee_count
+            = follower_count
+            <br>
+            = follower_count
+        div class="modal-footer"
+            = button_to 'Delete', admin_user_path(user.id), method: :delete,form_class: "form-delete", class: 'btn btn-danger'
+
+    / usage
+    / = render partial: "shared/modal/modal"

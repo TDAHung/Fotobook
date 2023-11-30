@@ -1,0 +1,20 @@
+    div class="profile__nav d-flex"
+        div class="profile__img"
+            img src="#{user.img_url.present? ? user.img_url.url : '/assets/avatar.png'}" alt=""
+        div class="profile__info d-flex flex-column justify-content-between ms-4"
+            = render partial: "shared/button/follow/user", locals: {followees: followees, user_id: user.id}
+            h1 = user.first_name.to_s.humanize + ' ' + user.last_name.to_s.humanize
+            nav class="tabs d-flex fs-5 p-0"
+                a class="tab #{request.path == discover_photo_path(params["id"]) ? 'active':''} ps-0 ms-0" href="#{discover_photo_path(params["id"])}"
+                    span #{photo_count} Photos
+                a class="tab #{request.path == discover_album_path(params["id"]) ? 'active':''}" href="#{discover_album_path(params["id"])}"
+                    span #{album_count} Albums
+                a class="tab #{request.path == discover_followee_path(params["id"]) ? 'active':''}" href="#{discover_followee_path(params["id"])}"
+                    span #{followers.count} Followings
+                a class="tab #{request.path == discover_follower_path(params["id"]) ? 'active':''}" href="#{discover_follower_path(params["id"])}"
+                    = render partial: "shared/navbar/follower_navbar", locals: { followees_count: followees.count }
+                / usage
+                / = render partial: "shared/user_navbar", locals: {user: @class_variable, album_count: instance_variable,
+                /     photo_count: instance_variable,
+                /     followees: @class_variable,
+                /     followers: @class_variable}
